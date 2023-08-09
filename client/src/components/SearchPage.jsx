@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   StyledSearchPageHeaderContainer,
@@ -27,6 +26,7 @@ import useSearch from "../Api/searchApi";
 const SearchPage = () => {
   const { search } = useLocation();
   const searchTerm = search?.split("?")[1];
+  console.log(searchTerm,"hiii")
   const { data } = useSearch(searchTerm);
   console.log(data,"hoi")
   return (
@@ -105,6 +105,6 @@ const SearchPage = () => {
       {!!data && <SearchResults data={data} />}
     </StyledSearchPageHeaderContainer>
   );
-};;
+};
 
 export default SearchPage;

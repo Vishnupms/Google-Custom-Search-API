@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   StyledInputWrapper,
   StyledSearchIcon,
@@ -24,6 +24,7 @@ const SearchInput = ({ showButtons = false }) => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           data-testid='search-input'
+          required
         />
         <Tooltip title='Search by voice'>
           <StyledMicIcon aria-label='voiceover' data-testid='mic-icon' />

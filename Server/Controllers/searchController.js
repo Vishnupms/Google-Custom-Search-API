@@ -1,8 +1,8 @@
 import axios from 'axios';
 import 'dotenv/config'
 
-const apiKey =process.env.API_KEY; // Replace with your actual API key
-const searchEngineId = process.env.SEARCH_ENGINE; // Replace with your actual search engine ID
+const apiKey =process.env.API_KEY; 
+const searchEngineId = process.env.SEARCH_ENGINE; 
 
 export const search = async (req, res) => {
   try {
@@ -18,7 +18,7 @@ export const search = async (req, res) => {
     const items = response?.data?.items || [];
     res.json(items);
   } catch (error) {
-    // console.error('Error fetching search results:', error);
+    console.error('Error fetching search results:', error);
     res.status(500).json({ error: 'An error occurred while fetching search results.' });
   }
 };

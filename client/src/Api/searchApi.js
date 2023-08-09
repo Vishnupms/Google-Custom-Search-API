@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-
+import Instance from "../Axios/Instance";
 
 const useSearch = (searchTerm) => {
-    const [data, setData] = useState('');
+  const [data, setData] = useState('');
   
-    useEffect(() => {
-      const fetchData = async () => {
-        const response = await axios.get('http://localhost:8000/api/search?q=' + searchTerm);
-        setData(response.data);
-        console.log(data,"hi")
-      };
-      fetchData();
-    }, [searchTerm]);
-  
-    return {
-      data,
+  useEffect(() => {
+    let debounceTimer;
+
+    const fetchData = async () => {
+      const response = await Instance.get('/search?q=' + searchTerm);
+      setData(response.data);
+      console.log(response.data, "hi");
     };
-  };
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(fetchData, 300); 
+
+    return () => {
+      clearTimeout(debounceTimer);
+    };
+  }, [searchTerm]);
   
+  return {
+    data,
+  };
+};
 
 export default useSearch;
