@@ -7,7 +7,6 @@ const searchEngineId = process.env.SEARCH_ENGINE; // Replace with your actual se
 export const search = async (req, res) => {
   try {
     const { q } = req.query;
-
     const response = await axios.get('https://www.googleapis.com/customsearch/v1', {
       params: {
         key: apiKey,
@@ -19,7 +18,7 @@ export const search = async (req, res) => {
     const items = response?.data?.items || [];
     res.json(items);
   } catch (error) {
-    console.error('Error fetching search results:', error);
+    // console.error('Error fetching search results:', error);
     res.status(500).json({ error: 'An error occurred while fetching search results.' });
   }
 };
